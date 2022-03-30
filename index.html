@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <h1>COLOR symphony</h1>
+
+  <meta charset="utf-8" />
+  <title>sekaisaikyouhenotabi-1 </title>
+  <style>
+    *{ padding:0; margin:0;}
+    canvas {background:#FFF ; display:block;margin :0 auto;}
+  </style>
+</head>
+<body>
+
+<canvas id ="myCanvas" width ="1500" height="4000"></canvas>
+
+<script>
+
+var canvas = document.getElementById("myCanvas");
+var ctx = canvas.getContext("2d");
+var x =canvas.width/2;
+var y =canvas.height;
+var dx = 20;
+var dy =-20;
+var ballRadius = 10;
+var g=1;
+var h=1;
+var i=2;
+var j=3;
+var k=4;
+var l=2;
+var time = 0;
+var colorR=0;
+var colorG=0;
+var colorB=0;
+
+function drawBall() {
+    ctx.beginPath();
+    ctx.arc(x, y,ballRadius, 0, Math.PI*2);
+    time+=0.05;
+    colorR =parseInt(255*(Math.sin(2*Math.PI*time/100)+1)/2);
+    colorG =parseInt(255*(Math.sin(2*Math.PI*5*time/100+time*Math.PI/3)+1)/2);
+    colorB =parseInt(255*(Math.sin(2*Math.PI*10*time/100+2*time*Math.PI/3)+1)/2);
+    ctx.font = "48px serif";
+  //  ctx.fillText(colorR.toString(16).padStart(2, '0')+":"+colorG.toString(16).padStart(2, '0')+":"+colorB.toString(16).padStart(2, '0'),100,100)
+
+
+    ctx.fillStyle = "#"+colorR.toString(16).padStart(2, '0')+colorG.toString(16).padStart(2, '0')+colorB.toString(16).padStart(2, '0');
+    ctx.fill();
+    ctx.closePath();
+
+}
+
+function draw() {
+  //ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawBall();
+    g +=1 ;
+    //h+= 1;
+    i+= 1;
+
+    x += dx;
+    y += dy;
+    if(x + dx > canvas.width || x + dx < 0) {
+    dx = -dx;
+    }
+
+    if(y + dy > canvas.height || y + dy < 0) {
+    dy = -dy;
+
+    }
+
+}
+setInterval(draw,0.01);
+
+</script>
+<h2>@gakufifi</h2>
+
+
+</body>
+
+</html>
